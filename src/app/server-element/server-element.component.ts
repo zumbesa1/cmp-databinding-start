@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -16,6 +16,7 @@ AfterViewChecked, OnDestroy{
   @Input('srvElement') element: { type: string, name: string, content: string };
   @Input() name: string;
   @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
 
   constructor() {
     console.log('constructor called');
@@ -29,6 +30,7 @@ AfterViewChecked, OnDestroy{
 
   ngOnInit(): void {
     console.log('ngOnInit called');
+    // Error occures --> console.log('Paragraph: ' + this.paragraph.nativeElement.textContent );
     // Error occures --> console.log('TextContent: ' + this.header.nativeElement.textContent);
   }
 
@@ -40,6 +42,7 @@ AfterViewChecked, OnDestroy{
   ngAfterContentInit(): void {
     //this is called only ones. It is called wenn the Content is finally initialised
     console.log('ngAfterContentInit called');
+    console.log('Paragraph: ' + this.paragraph.nativeElement.textContent );
   }
 
   ngAfterContentChecked(): void {
